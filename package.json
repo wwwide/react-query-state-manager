@@ -1,0 +1,39 @@
+{
+  "name": "react-query-state-manager",
+  "version": "1.0.0",
+  "description": "A tiny wrapper around react-query providing a way to create more strictly typed hooks for reading and writing data.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "lint": "TIMING=1 ./node_modules/eslint/bin/eslint.js --max-warnings=0 ./src/index.ts",
+    "ts-check": "tsc",
+    "build": "./build.sh",
+    "test": "jest"
+  },
+  "author": "Andrey Barkanov",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-query": ">=3.39.2"
+  },
+  "devDependencies": {
+    "@testing-library/react-hooks": "^8.0.1",
+    "@types/jest": "^29.2.6",
+    "@types/react": "^17.0.3",
+    "@types/react-test-renderer": "^17.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "esbuild": "^0.17.4",
+    "eslint": "^8.32.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.4.0",
+    "prettier": "^2.8.3",
+    "react-test-renderer": "^17.0.2",
+    "ts-node": "^10.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2",
+    "react-query": ">=3.39.2"
+  }
+}
