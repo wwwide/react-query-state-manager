@@ -1,0 +1,11 @@
+.idea/
+.eslintignore
+.eslintrc
+.gitignore
+.prettierrc
+.prettierignore
+tsconfig.json
+esbuild/
+package-lock.json
+build.sh
+src/

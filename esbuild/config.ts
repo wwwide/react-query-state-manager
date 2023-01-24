@@ -12,9 +12,7 @@ export const buildConfig = (): BuildOptions => ({
   color: true,
   publicPath: '/',
   loader: {
-    '.png': 'dataurl',
-    '.svg': 'text',
-    '.jpg': 'file',
     '.js': 'jsx'
-  }
+  },
+  external: ['react', 'react-dom', 'react-query']
 })
