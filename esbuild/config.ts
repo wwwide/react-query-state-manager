@@ -1,4 +1,4 @@
-import { BuildOptions, BuildFailure, BuildResult } from 'esbuild'
+import { BuildOptions } from 'esbuild'
 
 export const buildConfig = (): BuildOptions => ({
   entryPoints: ['./src/index.ts'],
@@ -7,8 +7,8 @@ export const buildConfig = (): BuildOptions => ({
   metafile: true,
   sourcemap: false,
   minify: true,
-  splitting: true,
-  format: 'esm',
+  splitting: false,
+  format: 'cjs',
   color: true,
   publicPath: '/',
   loader: {
