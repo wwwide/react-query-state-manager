@@ -6,11 +6,11 @@ type WriteHookValue<Payload, ReturnValue> = {
     isSuccess: boolean;
     status: QueryStatus;
 };
-export interface BaseAPIWriteHookOpts<Payload, ReturnValue> {
+export interface WriteHookOpts<Payload, ReturnValue> {
     onBefore?: (payload: Payload) => Promise<void>;
     onSuccess?: (payload: Payload, result: ReturnValue) => Promise<void>;
     onError?: (error: Error) => void;
     onFinally?: () => Promise<void>;
 }
-export type WriteHook<Payload, ReturnValue, Opts extends BaseAPIWriteHookOpts<Payload, ReturnValue> = BaseAPIWriteHookOpts<Payload, ReturnValue>> = (opts?: Opts) => WriteHookValue<Payload, ReturnValue>;
+export type WriteHook<Payload, ReturnValue, Opts extends WriteHookOpts<Payload, ReturnValue> = WriteHookOpts<Payload, ReturnValue>> = (opts?: Opts) => WriteHookValue<Payload, ReturnValue>;
 export {};

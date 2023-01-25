@@ -5,7 +5,7 @@ export type ReadHookCallbacks<ReturnValue> = {
   onError: (error: Error) => void
 }
 
-export type ReadHook<ReturnValue, Params = unknown> = (
+export type ReadHook<ReturnValue = unknown, Params = unknown> = (
   config?: Params,
   callbacks?: ReadHookCallbacks<ReturnValue>
 ) => StateManagerHookValue<ReturnValue>

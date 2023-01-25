@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { useMutation } from 'react-query'
-import { BaseAPIWriteHookOpts } from '../types/WriteHook'
+import { WriteHookOpts } from '../types/WriteHook'
 
 type ServiceFunction<Payload, ReturnValue> = (payload: Payload) => Promise<ReturnValue>
 
 export const useMutationManager = <Payload, ReturnValue>(
   serviceFunction: ServiceFunction<Payload, ReturnValue>,
-  opts?: BaseAPIWriteHookOpts<Payload, ReturnValue>
+  opts?: WriteHookOpts<Payload, ReturnValue>
 ) => {
   const { mutateAsync, isError, isSuccess, isLoading, status } = useMutation((payload: Payload) =>
     serviceFunction(payload)
