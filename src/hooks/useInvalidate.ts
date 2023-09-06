@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { QueryClient, QueryKey } from 'react-query'
+import { QueryClient, QueryKey } from '@tanstack/react-query'
 
 /**
  * useInvalidate hook return value.

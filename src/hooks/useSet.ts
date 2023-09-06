@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { QueryClient, QueryKey } from 'react-query'
+import { QueryClient, QueryKey } from '@tanstack/react-query'
 
 /**
  * useSet hook return value.
@@ -14,7 +14,7 @@ type UseSetValue = {
  * @param {QueryKey} key - item key to set data.
  * @param {TData} data - data to set in the key.
  */
-export const setState = <TData>(queryClient: QueryClient, key: QueryKey, data: TData): TData =>
+export const setState = <TData>(queryClient: QueryClient, key: QueryKey, data: TData): TData | undefined =>
   queryClient.setQueryData<TData>(key, data)
 
 /**

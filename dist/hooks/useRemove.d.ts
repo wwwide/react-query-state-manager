@@ -1,4 +1,4 @@
-import { QueryClient, QueryKey } from 'react-query';
+import { QueryClient, QueryKey } from '@tanstack/react-query';
 type UseRemoveValue = {
     remove: (key: QueryKey) => void;
     removeAll: () => void;

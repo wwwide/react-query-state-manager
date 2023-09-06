@@ -1,4 +1,4 @@
-import { QueryKey } from 'react-query';
+import { QueryKey } from '@tanstack/react-query';
 import { StateManagerHookOptions } from '../types/StateManagerHookOptions';
 import { StateManagerHookValue } from '../types/StateManagerHookValue';
 type UseUseValue = {

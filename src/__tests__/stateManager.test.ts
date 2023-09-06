@@ -1,5 +1,5 @@
-import { QueryClient, useQueryClient } from 'react-query'
-import { renderHook, RenderHookResult } from '@testing-library/react-hooks'
+import { QueryClient, useQueryClient } from '@tanstack/react-query'
+import { renderHook, RenderHookResult, waitFor } from '@testing-library/react'
 import TestRenderer from 'react-test-renderer'
 import { ReactQueryWrapper } from '../utils'
 import { useStateManager } from '../hooks'
@@ -20,8 +20,8 @@ describe('State manager hook works correctly', () => {
   beforeAll(async () => {
     managerHook = renderHook(() => useStateManager(), { wrapper: ReactQueryWrapper })
     clientHook = renderHook(() => useQueryClient(), { wrapper: ReactQueryWrapper })
-    await managerHook.waitFor(() => !!managerHook?.result.current)
-    await clientHook.waitFor(() => !!clientHook?.result.current)
+    await waitFor(() => expect(managerHook?.result.current).toBeTruthy())
+    await waitFor(() => expect(clientHook?.result.current).toBeTruthy())
     sm = managerHook.result.current
     qc = clientHook.result.current
   })
@@ -78,13 +78,13 @@ describe('State manager hook works correctly', () => {
       wrapper: ReactQueryWrapper
     })
 
-    await hook.waitFor(() => !!hook?.result.current)
+    await waitFor(() => expect(hook?.result.current).toBeTruthy())
 
     expect(hook.result.current?.data).toEqual(undefined)
     expect(hook.result.current?.isFetching).toEqual(true)
 
-    await hook.waitFor(() => hook?.result.current?.isFetching === false)
-
+    await waitFor(async () => { expect(hook?.result.current?.isFetching).toEqual(false) })
+    
     expect(hook.result.current?.data).toEqual({ name: 'First Last' })
 
     mutableName = 'First Second'

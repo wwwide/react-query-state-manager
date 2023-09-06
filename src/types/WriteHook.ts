@@ -1,4 +1,4 @@
-import { QueryStatus } from 'react-query'
+import { QueryStatus } from '@tanstack/react-query'
 
 type WriteHookValue<Payload, ReturnValue> = {
   routine: (payload: Payload) => Promise<ReturnValue>
