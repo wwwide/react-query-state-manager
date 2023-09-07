@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { QueryClient, QueryKey } from '@tanstack/react-query'
+import { QueryClient, QueryKey } from 'react-query'
 
 /**
  * useSet hook return value.

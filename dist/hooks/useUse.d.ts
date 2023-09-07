@@ -1,4 +1,4 @@
-import { QueryKey, QueryClient } from '@tanstack/react-query';
+import { QueryKey, QueryClient } from 'react-query';
 import { StateManagerHookOptions } from '../types/StateManagerHookOptions';
 import { StateManagerHookValue } from '../types/StateManagerHookValue';
 type UseUseValue = {

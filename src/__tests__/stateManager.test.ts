@@ -1,4 +1,4 @@
-import { QueryClient, useQueryClient } from '@tanstack/react-query'
+import { QueryClient, useQueryClient } from 'react-query'
 import { renderHook, RenderHookResult, waitFor } from '@testing-library/react'
 import TestRenderer from 'react-test-renderer'
 import { ReactQueryWrapper } from '../utils'

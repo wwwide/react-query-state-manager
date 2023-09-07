@@ -1,4 +1,4 @@
-import { useQueryClient, QueryClient } from '@tanstack/react-query'
+import { useQueryClient } from 'react-query'
 import { useRemove } from './useRemove'
 import { useSet } from './useSet'
 import { useGet } from './useGet'

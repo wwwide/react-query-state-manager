@@ -1,4 +1,4 @@
-import { QueryClient, QueryKey } from '@tanstack/react-query';
+import { QueryClient, QueryKey } from 'react-query';
 type UseInvalidateValue = {
     invalidate: (key: QueryKey) => Promise<void>;
 };

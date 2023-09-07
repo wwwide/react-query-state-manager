@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from 'react-query'
 import { WriteHookOpts } from '../types/WriteHook'
 
 type ServiceFunction<Payload, ReturnValue> = (payload: Payload) => Promise<ReturnValue>
