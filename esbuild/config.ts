@@ -1,14 +1,14 @@
-import { BuildOptions } from 'esbuild'
+import { BuildOptions, Format } from 'esbuild'
 
-export const buildConfig = (): BuildOptions => ({
+export const buildConfig = (format: Format): BuildOptions => ({
+  format,
   entryPoints: ['./src/index.ts'],
-  outdir: 'dist',
+  outdir: `dist/${format}`,
   bundle: true,
   metafile: true,
   sourcemap: false,
   minify: true,
   splitting: false,
-  format: 'cjs',
   color: true,
   publicPath: '/',
   loader: {
