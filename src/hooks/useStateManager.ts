@@ -10,8 +10,8 @@ import { StateManager } from '../types/StateManager'
  * Hook returning set of functions to work with state.
  * @returns {StateManager} - Set of functions to work with state.
  */
-export const useStateManager = (client?: QueryClient): StateManager => {
-  const queryClient = client || useQueryClient()
+export const useStateManager = (): StateManager => {
+  const queryClient = useQueryClient()
   const { remove, removeAll } = useRemove(queryClient)
   const { set } = useSet(queryClient)
   const { get } = useGet(queryClient)
