@@ -29,11 +29,11 @@ const useState = <TData>(
 ): StateManagerHookValue<TData> => {
   const queryClient = client || useQueryClient()
 
-  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, Error>(
-    key,
-    handler,
-    options
-  )
+  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, Error>({
+    queryKey: key,
+    queryFn: handler,
+    ...options
+  })
 
   const cleanUp = useCallback(() => {
     removeState(queryClient, key)
