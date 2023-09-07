@@ -1,6 +1,6 @@
 {
   "name": "react-query-state-manager",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A tiny wrapper around react-query providing a way to create more strictly typed hooks for reading and writing data.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
