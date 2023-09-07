@@ -1,4 +1,4 @@
-import { useQueryClient } from '@tanstack/react-query'
+import { useQueryClient, QueryClient } from '@tanstack/react-query'
 import { useRemove } from './useRemove'
 import { useSet } from './useSet'
 import { useGet } from './useGet'
@@ -10,8 +10,8 @@ import { StateManager } from '../types/StateManager'
  * Hook returning set of functions to work with state.
  * @returns {StateManager} - Set of functions to work with state.
  */
-export const useStateManager = (): StateManager => {
-  const queryClient = useQueryClient()
+export const useStateManager = (client?: QueryClient): StateManager => {
+  const queryClient = client || useQueryClient()
   const { remove, removeAll } = useRemove(queryClient)
   const { set } = useSet(queryClient)
   const { get } = useGet(queryClient)
