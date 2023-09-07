@@ -59,7 +59,7 @@ export const useUse = (client?: QueryClient): UseUseValue => {
   const use = useCallback(
     <TData>(key: QueryKey, handler: () => Promise<TData>, options?: StateManagerHookOptions<TData>) =>
       useState(key, handler, client, options),
-    [useState]
+    [useState, client]
   )
 
   return {
