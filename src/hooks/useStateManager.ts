@@ -16,7 +16,7 @@ export const useStateManager = (client?: QueryClient): StateManager => {
   const { set } = useSet(queryClient)
   const { get } = useGet(queryClient)
   const { invalidate } = useInvalidate(queryClient)
-  const { use } = useUse()
+  const { use } = useUse(queryClient)
 
   return {
     __client__: queryClient,
