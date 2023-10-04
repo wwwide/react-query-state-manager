@@ -2,7 +2,7 @@ import { QueryKey, QueryClient } from 'react-query';
 import { StateManagerHookOptions } from '../types/StateManagerHookOptions';
 import { StateManagerHookValue } from '../types/StateManagerHookValue';
 type UseUseValue = {
-    use: <TData>(key: QueryKey, handler: () => Promise<TData>, options?: StateManagerHookOptions<TData>) => StateManagerHookValue<TData>;
+    use: <TData, TError = Error>(key: QueryKey, handler: () => Promise<TData>, options?: StateManagerHookOptions<TData, TError>) => StateManagerHookValue<TData, TError>;
 };
 export declare const useUse: (client?: QueryClient) => UseUseValue;
 export {};

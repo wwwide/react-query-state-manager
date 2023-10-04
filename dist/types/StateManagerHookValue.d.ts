@@ -1,11 +1,11 @@
 import { QueryStatus } from 'react-query';
-export type StateManagerHookValue<V> = {
-    data: V | undefined;
+export type StateManagerHookValue<TValue, TError = Error> = {
+    data: TValue | undefined;
     isFetching: boolean;
     isFetched: boolean;
     isError: boolean;
     isSuccess: boolean;
     status: QueryStatus;
-    error: Error | null;
+    error: TError | null;
     cleanUp: () => void;
 };

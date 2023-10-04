@@ -1,11 +1,11 @@
 import { StateManagerHookValue } from './StateManagerHookValue'
 
-export type ReadHookCallbacks<ReturnValue> = {
-  onSuccess?: (value: ReturnValue) => void
-  onError?: (error: Error) => void
+export type ReadHookCallbacks<TValue, TError = Error> = {
+  onSuccess?: (value: TValue) => void
+  onError?: (error: TError) => void
 }
 
-export type ReadHook<ReturnValue = unknown, Params = unknown> = (
-  config?: Params,
-  callbacks?: ReadHookCallbacks<ReturnValue>
-) => StateManagerHookValue<ReturnValue>
+export type ReadHook<TValue = unknown, TParams = unknown, TError = Error> = (
+  config?: TParams,
+  callbacks?: ReadHookCallbacks<TValue, TError>
+) => StateManagerHookValue<TValue, TError>

@@ -8,28 +8,28 @@ import { removeState } from './useRemove'
  * useUse hook return value.
  */
 type UseUseValue = {
-  use: <TData>(
+  use: <TData, TError = Error>(
     key: QueryKey,
     handler: () => Promise<TData>,
-    options?: StateManagerHookOptions<TData>
-  ) => StateManagerHookValue<TData>
+    options?: StateManagerHookOptions<TData, TError>
+  ) => StateManagerHookValue<TData, TError>
 }
 
 /**
  * Uses state from given key,
  * @param {QueryKey} key - item key.
  * @param {() => Promise<TData>} handler - promise based function to fetch/generate data.
- * @param {StateManagerHookOptions<TData>} options - react-query hook options.
+ * @param {StateManagerHookOptions<TData, TError>} options - react-query hook options.
  */
-const useState = <TData>(
+const useState = <TData, TError = Error>(
   key: QueryKey,
   handler: () => Promise<TData>,
   client?: QueryClient,
-  options?: StateManagerHookOptions<TData>
-): StateManagerHookValue<TData> => {
+  options?: StateManagerHookOptions<TData, TError>
+): StateManagerHookValue<TData, TError> => {
   const queryClient = client || useQueryClient()
 
-  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, Error>(
+  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, TError>(
     key,
     handler,
     options
@@ -57,7 +57,7 @@ const useState = <TData>(
  */
 export const useUse = (client?: QueryClient): UseUseValue => {
   const use = useCallback(
-    <TData>(key: QueryKey, handler: () => Promise<TData>, options?: StateManagerHookOptions<TData>) =>
+    <TData, TError>(key: QueryKey, handler: () => Promise<TData>, options?: StateManagerHookOptions<TData, TError>) =>
       useState(key, handler, client, options),
     [useState, client]
   )

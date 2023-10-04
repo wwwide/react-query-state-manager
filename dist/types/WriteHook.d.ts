@@ -1,15 +1,15 @@
-type WriteHookValue<Payload, ReturnValue> = {
-    routine: (payload: Payload) => Promise<ReturnValue>;
+type WriteHookValue<TPayload, TValue> = {
+    routine: (payload: TPayload) => Promise<TValue>;
     isLoading: boolean;
     isError: boolean;
     isSuccess: boolean;
     status: 'error' | 'idle' | 'loading' | 'success';
 };
-export interface WriteHookOpts<Payload, ReturnValue> {
-    onBefore?: (payload: Payload) => Promise<void>;
-    onSuccess?: (payload: Payload, result: ReturnValue) => Promise<void>;
-    onError?: (error: Error) => void;
+export interface WriteHookOpts<TPayload, TValue, TError = Error> {
+    onBefore?: (payload: TPayload) => Promise<void>;
+    onSuccess?: (payload: TPayload, result: TValue) => Promise<void>;
+    onError?: (error: TError) => void;
     onFinally?: () => Promise<void>;
 }
-export type WriteHook<Payload, ReturnValue, Opts extends WriteHookOpts<Payload, ReturnValue> = WriteHookOpts<Payload, ReturnValue>> = (opts?: Opts) => WriteHookValue<Payload, ReturnValue>;
+export type WriteHook<TPayload, TValue, TError = Error, Opts extends WriteHookOpts<TPayload, TValue, TError> = WriteHookOpts<TPayload, TValue, TError>> = (opts?: Opts) => WriteHookValue<TPayload, TValue>;
 export {};

@@ -8,5 +8,5 @@ export type StateManager = {
     removeAll: () => void;
     get: <TData>(key: QueryKey) => TData | unknown;
     invalidate: (key: QueryKey) => Promise<void>;
-    use: <TData>(key: QueryKey, handler: () => Promise<TData>, options?: StateManagerHookOptions<TData>) => StateManagerHookValue<TData>;
+    use: <TData, TError = Error>(key: QueryKey, handler: () => Promise<TData>, options?: StateManagerHookOptions<TData, TError>) => StateManagerHookValue<TData, TError>;
 };
