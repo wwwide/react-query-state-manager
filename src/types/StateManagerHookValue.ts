@@ -9,4 +9,5 @@ export type StateManagerHookValue<TValue, TError = Error> = {
   status: QueryStatus
   error: TError | null
   cleanUp: () => void
+  invalidate: () => Promise<void>
 }

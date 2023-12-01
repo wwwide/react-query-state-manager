@@ -3,6 +3,7 @@ import { useQuery, useQueryClient, QueryKey, QueryClient } from 'react-query'
 import { StateManagerHookOptions } from '../types/StateManagerHookOptions'
 import { StateManagerHookValue } from '../types/StateManagerHookValue'
 import { removeState } from './useRemove'
+import { invalidateState } from './useInvalidate'
 
 /**
  * useUse hook return value.
@@ -39,6 +40,8 @@ const useState = <TData, TError = Error>(
     removeState(queryClient, key)
   }, [removeState, client])
 
+  const invalidate = useCallback(() => invalidateState(queryClient, key), [invalidateState, client])
+
   return {
     data,
     isFetching,
@@ -47,7 +50,8 @@ const useState = <TData, TError = Error>(
     isSuccess,
     status,
     error,
-    cleanUp
+    cleanUp,
+    invalidate
   }
 }
 
