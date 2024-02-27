@@ -38,9 +38,9 @@ const useState = <TData, TError = Error>(
 
   const cleanUp = useCallback(() => {
     removeState(queryClient, key)
-  }, [removeState, client])
+  }, [removeState, queryClient, key])
 
-  const invalidate = useCallback(() => invalidateState(queryClient, key), [invalidateState, client])
+  const invalidate = useCallback(() => invalidateState(queryClient, key), [invalidateState, queryClient, key])
 
   return {
     data,

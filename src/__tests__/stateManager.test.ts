@@ -83,8 +83,10 @@ describe('State manager hook works correctly', () => {
     expect(hook.result.current?.data).toEqual(undefined)
     expect(hook.result.current?.isFetching).toEqual(true)
 
-    await waitFor(async () => { expect(hook?.result.current?.isFetching).toEqual(false) })
-    
+    await waitFor(async () => {
+      expect(hook?.result.current?.isFetching).toEqual(false)
+    })
+
     expect(hook.result.current?.data).toEqual({ name: 'First Last' })
 
     mutableName = 'First Second'
@@ -94,5 +96,44 @@ describe('State manager hook works correctly', () => {
     })
 
     expect(hook.result.current?.data).toEqual({ name: 'First Second' })
+  })
+
+  test('useUse invalidate method works correct', async () => {
+    let data = 'data'
+    const handler = () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ data: data })
+        }, 300)
+      })
+
+    let key = 'test'
+
+    // look up data using 'test' key for the first
+    const hook = renderHook(() => sm?.use([key], handler), {
+      wrapper: ReactQueryWrapper
+    })
+    await waitFor(async () => {
+      expect(hook?.result.current?.isFetching).toEqual(false)
+    })
+
+    // look up data using 'test2' key for the second
+    key = 'test2'
+    await act(async () => {
+      hook.rerender()
+    })
+    await waitFor(async () => {
+      expect(hook?.result.current?.isFetching).toEqual(false)
+    })
+    expect(sm?.get(['test2'])).toEqual({ data: 'data' })
+
+    // change data and invalidate
+    data = 'data2'
+    await act(async () => {
+      await hook.result.current?.invalidate()
+    })
+
+    // data under last key invalidated
+    expect(sm?.get(['test2'])).toEqual({ data: 'data2' })
   })
 })
