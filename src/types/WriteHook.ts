@@ -3,7 +3,7 @@ type WriteHookValue<TPayload, TValue> = {
   isPending: boolean
   isError: boolean
   isSuccess: boolean
-  status: 'error' | 'idle' | 'loading' | 'success'
+  status: 'error' | 'idle' | 'pending' | 'success'
 }
 
 export interface WriteHookOpts<TPayload, TValue, TError = Error> {
