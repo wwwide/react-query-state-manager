@@ -1,6 +1,6 @@
 type WriteHookValue<TPayload, TValue> = {
   routine: (payload: TPayload) => Promise<TValue>
-  isLoading: boolean
+  isPending: boolean
   isError: boolean
   isSuccess: boolean
   status: 'error' | 'idle' | 'loading' | 'success'
