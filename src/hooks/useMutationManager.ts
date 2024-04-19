@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import { WriteHookOpts } from '../types/WriteHook'
+import { useContext } from '../components/Provider'
 
 type ServiceFunction<Payload, ReturnValue> = (payload: Payload) => Promise<ReturnValue>
 
@@ -8,9 +9,13 @@ export const useMutationManager = <TPayload, TValue, TError = Error>(
   serviceFunction: ServiceFunction<TPayload, TValue>,
   opts?: WriteHookOpts<TPayload, TValue, TError>
 ) => {
-  const { mutateAsync, isError, isSuccess, isPending, status } = useMutation({
-    mutationFn: (payload: TPayload) => serviceFunction(payload)
-  })
+  const { queryClient } = useContext()
+  const { mutateAsync, isError, isSuccess, isPending, status } = useMutation(
+    {
+      mutationFn: (payload: TPayload) => serviceFunction(payload)
+    },
+    queryClient
+  )
 
   const routine = useCallback(
     async (payload: TPayload) => {
