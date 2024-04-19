@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { useQuery, useQueryClient, QueryKey, QueryClient } from 'react-query'
+import { useQuery, useQueryClient, QueryKey, QueryClient } from '@tanstack/react-query'
 import { StateManagerHookOptions } from '../types/StateManagerHookOptions'
 import { StateManagerHookValue } from '../types/StateManagerHookValue'
 import { removeState } from './useRemove'
@@ -30,11 +30,11 @@ const useState = <TData, TError = Error>(
 ): StateManagerHookValue<TData, TError> => {
   const queryClient = client || useQueryClient()
 
-  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, TError>(
-    key,
-    handler,
-    options
-  )
+  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, TError>({
+    ...options,
+    queryKey: key,
+    queryFn: handler
+  })
 
   const cleanUp = useCallback(() => {
     removeState(queryClient, key)

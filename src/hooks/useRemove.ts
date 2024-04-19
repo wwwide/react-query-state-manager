@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { QueryClient, QueryKey } from 'react-query'
+import { QueryClient, QueryKey } from '@tanstack/react-query'
 
 /**
  * useRemove hook return value.
@@ -14,8 +14,8 @@ type UseRemoveValue = {
  * @param {QueryClient} queryClient - react-query client instance.
  * @param {QueryKey} key - key to delete data from.
  */
-export const removeState = (queryClient: QueryClient, key: QueryKey) => {
-  queryClient.removeQueries(key)
+export const removeState = (queryClient: QueryClient, queryKey: QueryKey) => {
+  queryClient.removeQueries({ queryKey })
 }
 
 /**

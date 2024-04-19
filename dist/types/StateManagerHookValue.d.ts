@@ -1,4 +1,4 @@
-import { QueryStatus } from 'react-query';
+import { QueryStatus } from '@tanstack/react-query';
 export type StateManagerHookValue<TValue, TError = Error> = {
     data: TValue | undefined;
     isFetching: boolean;

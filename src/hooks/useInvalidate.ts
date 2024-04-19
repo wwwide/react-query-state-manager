@@ -1,5 +1,5 @@
 import { useCallback } from 'react'
-import { QueryClient, QueryKey } from 'react-query'
+import { QueryClient, QueryKey } from '@tanstack/react-query'
 
 /**
  * useInvalidate hook return value.
@@ -13,7 +13,8 @@ type UseInvalidateValue = {
  * @param {QueryClient} queryClient - react-query client instance.
  * @param {QueryKey} key - item key.
  */
-export const invalidateState = (queryClient: QueryClient, key: QueryKey) => queryClient.invalidateQueries(key)
+export const invalidateState = (queryClient: QueryClient, key: QueryKey) =>
+  queryClient.invalidateQueries({ queryKey: key })
 
 /**
  * Hook producing function for invalidating data in react-query state.
