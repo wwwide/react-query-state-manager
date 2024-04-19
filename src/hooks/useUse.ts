@@ -1,9 +1,10 @@
 import { useCallback } from 'react'
-import { useQuery, useQueryClient, QueryKey, QueryClient } from '@tanstack/react-query'
+import { useQuery, QueryKey, QueryClient } from '@tanstack/react-query'
 import { StateManagerHookOptions } from '../types/StateManagerHookOptions'
 import { StateManagerHookValue } from '../types/StateManagerHookValue'
 import { removeState } from './useRemove'
 import { invalidateState } from './useInvalidate'
+import { useContext } from '../components/Provider'
 
 /**
  * useUse hook return value.
@@ -28,7 +29,8 @@ const useState = <TData, TError = Error>(
   client?: QueryClient,
   options?: StateManagerHookOptions<TData, TError>
 ): StateManagerHookValue<TData, TError> => {
-  const queryClient = client || useQueryClient()
+  const context = useContext()
+  const queryClient = client || context.queryClient
 
   const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, TError>({
     ...options,

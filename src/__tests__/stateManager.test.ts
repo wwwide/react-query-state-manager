@@ -1,9 +1,10 @@
-import { QueryClient, useQueryClient } from '@tanstack/react-query'
+import { QueryClient } from '@tanstack/react-query'
 import { renderHook, RenderHookResult, waitFor } from '@testing-library/react'
 import TestRenderer from 'react-test-renderer'
 import { ReactQueryWrapper } from '../utils'
 import { useStateManager } from '../hooks'
 import { StateManager } from '../types/StateManager'
+import { useContext } from '../components/Provider'
 
 const { act } = TestRenderer
 
@@ -19,7 +20,7 @@ let qc: QueryClient | undefined = undefined
 describe('State manager hook works correctly', () => {
   beforeAll(async () => {
     managerHook = renderHook(() => useStateManager(), { wrapper: ReactQueryWrapper })
-    clientHook = renderHook(() => useQueryClient(), { wrapper: ReactQueryWrapper })
+    clientHook = renderHook(() => useContext().queryClient, { wrapper: ReactQueryWrapper })
     await waitFor(() => expect(managerHook?.result.current).toBeTruthy())
     await waitFor(() => expect(clientHook?.result.current).toBeTruthy())
     sm = managerHook.result.current
