@@ -33,10 +33,10 @@ const useState = <TData, TError = Error>(
   const queryClient = client || context.queryClient
 
   const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, TError>({
-    ...options,
+    ...options,    
     queryKey: key,
     queryFn: handler
-  })
+  }, queryClient)
 
   const cleanUp = useCallback(() => {
     removeState(queryClient, key)
