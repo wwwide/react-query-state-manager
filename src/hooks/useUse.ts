@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useQuery, QueryKey, QueryClient } from '@tanstack/react-query'
 import { StateManagerHookOptions } from '../types/StateManagerHookOptions'
 import { StateManagerHookValue } from '../types/StateManagerHookValue'
@@ -32,17 +32,32 @@ const useState = <TData, TError = Error>(
   const context = useContext()
   const queryClient = client || context.queryClient
 
-  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, TError>({
-    ...options,    
-    queryKey: key,
-    queryFn: handler
-  }, queryClient)
+  const { data, isFetching, isFetched, isError, isSuccess, status, error } = useQuery<TData, TError>(
+    {
+      ...options,
+      queryKey: key,
+      queryFn: handler
+    },
+    queryClient
+  )
 
   const cleanUp = useCallback(() => {
     removeState(queryClient, key)
   }, [queryClient, key])
 
   const invalidate = useCallback(() => invalidateState(queryClient, key), [invalidateState, queryClient, key])
+
+  useEffect(() => {
+    if (isSuccess && options?.onSuccess) {
+      options.onSuccess(data)
+    }
+  }, [isSuccess, options, data])
+
+  useEffect(() => {
+    if (isError && options?.onError) {
+      options.onError(error)
+    }
+  }, [isError, options, error])
 
   return {
     data,
