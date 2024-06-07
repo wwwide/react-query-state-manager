@@ -1,6 +1,6 @@
 {
   "name": "react-query-state-manager",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "A tiny wrapper around react-query providing a way to create more strictly typed hooks for reading and writing data.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -10,7 +10,7 @@
         "require": "./dist/cjs/index.js"
     }
   },
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "lint": "TIMING=1 ./node_modules/eslint/bin/eslint.js --max-warnings=0 ./src/index.ts",
     "ts-check": "tsc",
