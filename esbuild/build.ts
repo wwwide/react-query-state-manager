@@ -3,7 +3,8 @@ import { buildConfig } from './config'
 
 const t1 = Date.now()
 
-build(buildConfig())
+build(buildConfig('cjs'))
+  .then(() => build(buildConfig('esm')))
   .catch((error) => {
     console.error(error)
     process.exit(1)
