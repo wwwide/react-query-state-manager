@@ -1,6 +1,6 @@
 {
   "name": "react-query-state-manager",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "description": "A tiny wrapper around react-query providing a way to create more strictly typed hooks for reading and writing data.",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -40,8 +40,8 @@
     "ts-node": "^10.9.1"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@tanstack/react-query": "^5.29.2"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0",
+    "@tanstack/react-query": "^5.74.11"
   }
 }
